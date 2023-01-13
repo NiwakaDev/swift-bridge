@@ -1,0 +1,2366 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>The swift-bridge Book</title>
+                <meta name="robots" content="noindex" />
+                
+
+        <!-- Custom HTML head -->
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+                <link rel="icon" href="favicon.svg">
+                        <link rel="shortcut icon" href="favicon.png">
+                <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+                <link rel="stylesheet" href="css/print.css" media="print">
+        
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="fonts/fonts.css">
+        
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+            </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="building/index.html"><strong aria-hidden="true">1.</strong> Building</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="building/xcode-and-cargo/index.html"><strong aria-hidden="true">1.1.</strong> Xcode + Cargo</a></li><li class="chapter-item expanded "><a href="building/swiftc-and-cargo/index.html"><strong aria-hidden="true">1.2.</strong> swiftc + Cargo</a></li><li class="chapter-item expanded "><a href="building/swift-packages/index.html"><strong aria-hidden="true">1.3.</strong> Swift Packages</a></li></ol></li><li class="chapter-item expanded "><a href="bridge-module/index.html"><strong aria-hidden="true">2.</strong> The Bridge Module</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="bridge-module/functions/index.html"><strong aria-hidden="true">2.1.</strong> Functions</a></li><li class="chapter-item expanded "><a href="bridge-module/opaque-types/index.html"><strong aria-hidden="true">2.2.</strong> Opaque Types</a></li><li class="chapter-item expanded "><a href="bridge-module/transparent-types/index.html"><strong aria-hidden="true">2.3.</strong> Transparent Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="bridge-module/transparent-types/structs/index.html"><strong aria-hidden="true">2.3.1.</strong> Transparent Structs</a></li><li class="chapter-item expanded "><a href="bridge-module/transparent-types/enums/index.html"><strong aria-hidden="true">2.3.2.</strong> Transparent Enums</a></li></ol></li><li class="chapter-item expanded "><a href="bridge-module/async-functions/index.html"><strong aria-hidden="true">2.4.</strong> Async Functions</a></li><li class="chapter-item expanded "><a href="bridge-module/generics/index.html"><strong aria-hidden="true">2.5.</strong> Generics</a></li><li class="chapter-item expanded "><a href="bridge-module/conditional-compilation/index.html"><strong aria-hidden="true">2.6.</strong> Conditional Compilation</a></li></ol></li><li class="chapter-item expanded "><a href="built-in/index.html"><strong aria-hidden="true">3.</strong> Built In Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="built-in/string/index.html"><strong aria-hidden="true">3.1.</strong> String &lt;---&gt; String</a></li><li class="chapter-item expanded "><a href="built-in/str/index.html"><strong aria-hidden="true">3.2.</strong> &amp;str &lt;---&gt; RustStr</a></li><li class="chapter-item expanded "><a href="built-in/vec/index.html"><strong aria-hidden="true">3.3.</strong> Vec &lt;---&gt; RustVec</a></li><li class="chapter-item expanded "><a href="built-in/option/index.html"><strong aria-hidden="true">3.4.</strong> Option &lt;---&gt; Optional</a></li><li class="chapter-item expanded "><a href="built-in/result/index.html"><strong aria-hidden="true">3.5.</strong> Result&lt;T, E&gt; &lt;---&gt; RustResult&lt;T, E&gt;</a></li><li class="chapter-item expanded "><a href="built-in/boxed-functions/index.html"><strong aria-hidden="true">3.6.</strong> Box&lt;dyn FnOnce(A, B) -&gt; C&gt;</a></li></ol></li><li class="chapter-item expanded "><a href="safety/index.html"><strong aria-hidden="true">4.</strong> Safety</a></li><li class="chapter-item expanded "><a href="contributing/index.html"><strong aria-hidden="true">5.</strong> Contributing to swift-bridge</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contributing/internal-design/index.html"><strong aria-hidden="true">5.1.</strong> Internal Design</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contributing/internal-design/codegen/index.html"><strong aria-hidden="true">5.1.1.</strong> Code Generation</a></li></ol></li><li class="chapter-item expanded "><a href="contributing/adding-support-for-a-signature/index.html"><strong aria-hidden="true">5.2.</strong> Adding support for a signature</a></li></ol></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
+
+                    <h1 class="menu-title">The swift-bridge Book</h1>
+
+                    <div class="right-buttons">
+                                                <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        <a href="https://github.com/chinedufn/swift-bridge" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                                                
+                    </div>
+                </div>
+
+                                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="swift-bridge"><a class="header" href="#swift-bridge">swift-bridge</a></h1>
+<p><code>swift-bridge</code> generates bindings for calling Rust from Swift and vice versa.</p>
+<p>The <code>swift-bridge</code> book is a work-in-progress with many chapter either sparse or empty.</p>
+<p>If you have a question that isn't answered by the book yet, <a href="https://github.com/chinedufn/swift-bridge/issues">please open an issue</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="building"><a class="header" href="#building">Building</a></h1>
+<p>Building an application that uses Swift and Rust means compiling Swift
+source code and Rust source code into a final binary.</p>
+<p>If there was a super-compiler that knew about both Swift and Rust code you
+could tell that compiler to compile source files from both languages into
+a final binary.</p>
+<p>This doesn't exist, so instead you need to use both a Swift compiler and
+a Rust compiler in a two-stepped approach.</p>
+<p>First you compile one of the languages into a native library.</p>
+<p>Then you use the second compiler to compile the other language into your
+final binary, along the way linking in the native library that you created.</p>
+<p>Here's how this process would look if you were linking in a Rust native
+library when compiling a Swift executable.</p>
+<pre><code class="language-text">┌──────────────────────────────────┐           ┌───────────────────┐       
+│// Rust code                      │           │// Swift Code      │       
+│                                  │           │                   │       
+│pub extern &quot;C&quot; fn rust_hello() {  │           │rust_hello()       │       
+│    println!(&quot;Hi, I'm Rust!&quot;)     │           │                   │       
+│}                                 │           │                   │       
+└──────────────────────────────────┘           └───────────────────┘       
+                 │                                       │                 
+    Compile Rust │                                       │ Compile Swift to
+   to native lib │                                       │ executable      
+                 │                                       │                 
+                 ▼                      Link in Rust     │                 
+┌────────────────────────────────┐      native lib       │                 
+│       libmy_rust_crate.a       │───────────────────────┤                 
+└────────────────────────────────┘                       │                 
+                                                         │                 
+                                                         ▼                 
+                                       ┌──────────────────────────────────┐
+                                       │     Final Executable Binary      │
+                                       │                                  │
+                                       └──────────────────────────────────┘
+</code></pre>
+<p>In a similar fashion, you could also compile Swift code into a native library and then
+link it in when compiling your Rust code.</p>
+<p>Which direction to choose largely comes down to whichever is easiest based on the
+build tools that you already use or plan to use.</p>
+<p>This chapter walks you through a few different ways to build Swift and Rust code.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="xcode--cargo"><a class="header" href="#xcode--cargo">Xcode + Cargo</a></h1>
+<p>To demonstrate how to set up an Xcode + Cargo project, we'll create a new iOS application that makes use of <code>swift-bridge</code> in order
+use <code>rust-analyzer</code> to perform syntax highlighting of Rust code.</p>
+<p>When we're done we'll have a simple application where we can type Rust code into a text area and see the syntax
+highlighted version below it.</p>
+<p><img src="building/xcode-and-cargo/./screenshots/simulator-rust-analyzer-app.png" alt="Simulator rust analyzer app" /></p>
+<h2 id="project-setup"><a class="header" href="#project-setup">Project Setup</a></h2>
+<p>Create a new project.</p>
+<pre><code class="language-sh">cargo new --lib ios-rust-analyzer
+cd ios-rust-analyzer
+</code></pre>
+<hr />
+<p>Install <a href="https://github.com/TimNN/cargo-lipo"><code>cargo-lipo</code></a>.</p>
+<pre><code>cargo install -f cargo-lipo
+</code></pre>
+<hr />
+<p>Create a new Xcode project within the <code>ios-rust-analyzer</code> directory.</p>
+<p><code>Xxode &gt; File &gt; New Project &gt; iOS &gt; App</code></p>
+<p>We'll name it <code>IosRustAnalyzer</code>.</p>
+<p><img src="building/xcode-and-cargo/./screenshots/xcode-new-project-ios-app.png" alt="New iOS App" /></p>
+<p><img src="building/xcode-and-cargo/./screenshots/xcode-name-ios-project.png" alt="Naming the iOS App" /></p>
+<p>Your directory should now look something like:</p>
+<pre><code>$ tree -L 2
+.
+├── Cargo.toml
+├── IosRustAnalyzer
+│   ├── IosRustAnalyzer
+│   └── IosRustAnalyzer.xcodeproj
+└── src
+    └── lib.rs
+</code></pre>
+<hr />
+<p>Create a bash script that we can use to build the application</p>
+<pre><code>touch IosRustAnalyzer/build-rust.sh
+chmod +x IosRustAnalyzer/build-rust.sh
+</code></pre>
+<pre><code class="language-sh">#!/bin/bash
+
+##################################################
+# We call this from an Xcode run script.
+##################################################
+
+set -e
+
+if [[ -z &quot;$PROJECT_DIR&quot; ]]; then
+    echo &quot;Must provide PROJECT_DIR environment variable set to the Xcode project directory.&quot; 1&gt;&amp;2
+    exit 1
+fi
+
+cd $PROJECT_DIR
+
+export PATH=&quot;$HOME/.cargo/bin:$PATH&quot;
+
+export SWIFT_BRIDGE_OUT_DIR=&quot;${PROJECT_DIR}/Generated&quot;
+
+# Without this we can't compile on MacOS Big Sur
+# https://github.com/TimNN/cargo-lipo/issues/41#issuecomment-774793892
+if [[ -n &quot;${DEVELOPER_SDK_DIR:-}&quot; ]]; then
+  export LIBRARY_PATH=&quot;${DEVELOPER_SDK_DIR}/MacOSX.sdk/usr/lib:${LIBRARY_PATH:-}&quot;
+fi
+
+# if [ $ENABLE_PREVIEWS == &quot;NO&quot; ]; then
+
+  if [[ $CONFIGURATION == &quot;Release&quot; ]]; then
+      echo &quot;BUIlDING FOR RELEASE&quot;
+      
+      cargo lipo --release --manifest-path ../Cargo.toml
+  else
+      echo &quot;BUIlDING FOR DEBUG&quot;
+
+      cargo lipo --manifest-path ../Cargo.toml
+  fi
+  
+# else
+#   echo &quot;Skipping the script because of preview mode&quot;
+# fi
+</code></pre>
+<hr />
+<p>Create a new build phase that calls <code>./build-rust.sh</code> — the bash script that we created.</p>
+<p>Be sure to drag it before the <code>Compile Sources</code> step.</p>
+<p><img src="building/xcode-and-cargo/./screenshots/xcode-create-run-script.png" alt="Xcode build phase - create run script" /></p>
+<p><img src="building/xcode-and-cargo/./screenshots/xcode-build-phase-collapsed.png" alt="Xcode build phase - collapsed" /></p>
+<p><img src="building/xcode-and-cargo/./screenshots/xcode-build-phase-expanded.png" alt="Xcode build phase - expanded" /></p>
+<hr />
+<p>Create a directory <code>Generated</code> where our generated Swift and C code will go.</p>
+<pre><code>mkdir IosRustAnalyzer/Generated
+touch IosRustAnalyzer/Generated/.gitignore
+</code></pre>
+<p>Give <code>IosRustAnalyzer/Generated/.gitignore</code> the following contents:</p>
+<pre><code># IosRustAnalyzer/Generated/.gitignore
+*
+!.gitignore
+</code></pre>
+<hr />
+<p>Create a new bridging header and name it <code>BridgingHeader.h</code>.</p>
+<p><img src="building/xcode-and-cargo/./screenshots/xcode-new-header-file.png" alt="Create bridging header" /></p>
+<p>Give it these contents:</p>
+<pre><code class="language-c">#ifndef BridgingHeader_h
+#define BridgingHeader_h
+
+#include &quot;Generated/SwiftBridgeCore.h&quot;
+#include &quot;Generated/ios-rust-analyzer/ios-rust-analyzer.h&quot;
+
+#endif
+</code></pre>
+<hr />
+<p>Set the bridging header to <code>$(PROJECT_DIR)/BridgingHeader.h</code></p>
+<p><img src="building/xcode-and-cargo/./screenshots/xcode-set-bridging-header.png" alt="Bridging Header" /></p>
+<hr />
+<p>In the <code>Cargo.toml</code>, set the crate-type and build script.</p>
+<pre><code class="language-toml">[package]
+name = &quot;ios-rust-analyzer&quot;
+version = &quot;0.1.0&quot;
+edition = &quot;2021&quot;
+
+build = &quot;build.rs&quot;
+
+[build-dependencies]
+swift-bridge-build = &quot;0.1&quot;
+
+[lib]
+crate-type = [&quot;staticlib&quot;]
+
+[dependencies]
+swift-bridge = &quot;0.1&quot;
+ide = {git = &quot;https://github.com/rust-analyzer/rust-analyzer&quot;}
+</code></pre>
+<hr />
+<p>Create our build script.</p>
+<pre><code>touch build.rs
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">// In build.rs
+
+fn main() {
+  // TODO...
+}
+</code></pre></pre>
+<hr />
+<p>Build the <code>Cargo</code> project once so that we can generate the files that we'll be linking to.</p>
+<pre><code>PROJECT_DIR=&quot;${PWD}/IosRustAnalyzer&quot; ./IosRustAnalyzer/build-rust.sh
+</code></pre>
+<hr />
+<p>Set the <code>Debug</code> library search path to <code>$(PROJECT_DIR)/../target/universal/debug</code>, and the <code>Release</code> library
+search path to <code>$(PROJECT_DIR)/../target/universal/release</code></p>
+<p><img src="building/xcode-and-cargo/./screenshots/xcode-set-library-search-paths.png" alt="Xcode set library search paths" /></p>
+<hr />
+<p>Go to <code>IosRustAnalyzer &gt; General &gt; Frameworks, Libraries, and Embedded Content &gt; +</code> to add and click <code>Add Other &gt; Add Files</code>.</p>
+<p>Select the <code>target/universal/debug/libios_rust_analyzer.a</code> file.</p>
+<p><img src="building/xcode-and-cargo/./screenshots/xcode-frameworks-libraries-section.png" alt="Frameworks and libraries" /></p>
+<p><img src="building/xcode-and-cargo/./screenshots/xcode-libraries-add-other.png" alt="Libraries add other" /></p>
+<hr />
+<p>Select the same <code>target/universal/debug/libios_rust_analyzer.a</code> in the link binaries with libraries build phase.</p>
+<p><img src="building/xcode-and-cargo/./screenshots/xcode-link-binary-build-phase.png" alt="Link binary build phase" /></p>
+<hr />
+<p>Add the following to the <code>build.rs</code> file that we created earlier.</p>
+<pre><pre class="playground"><code class="language-rust">const XCODE_CONFIGURATION_ENV: &amp;'static str = &quot;CONFIGURATION&quot;;
+
+fn main() {
+    let out_dir = &quot;IosRustAnalyzer/Generated&quot;;
+
+    let bridges = vec![&quot;src/lib.rs&quot;];
+    for path in &amp;bridges {
+        println!(&quot;cargo:rerun-if-changed={}&quot;, path);
+    }
+    println!(&quot;cargo:rerun-if-env-changed={}&quot;, XCODE_CONFIGURATION_ENV);
+
+    swift_bridge_build::parse_bridges(bridges)
+        .write_all_concatenated(out_dir, env!(&quot;CARGO_PKG_NAME&quot;));
+}
+</code></pre></pre>
+<hr />
+<p>Build again so that we can genrate the files that we're including from <code>BridgingHeader.h</code>.</p>
+<pre><code>PROJECT_DIR=&quot;${PWD}/IosRustAnalyzer&quot; ./IosRustAnalyzer/build-rust.sh
+</code></pre>
+<hr />
+<p>Right click on <code>IosRustAnalyzer</code> and click <code>Add Files To IosRustAnalyzer</code>. Add the entire <code>Generated</code> directory.</p>
+<p><img src="building/xcode-and-cargo/./screenshots/xcode-add-files-to-ios-rust-analyzer.png" alt="Add files to IosRustAnalyzer" /></p>
+<p><img src="building/xcode-and-cargo/./screenshots/xcode-select-generated-files.png" alt="Add generated files" /></p>
+<hr />
+<p>Pressing the <code>Run</code> button should now open up the iOS simulator with Xcode's default &quot;Hello World&quot; iOS app.</p>
+<p><img src="building/xcode-and-cargo/./screenshots/simulator-hello-world.png" alt="iOS simulator hello world" /></p>
+<h2 id="rust"><a class="header" href="#rust">Rust</a></h2>
+<p>Now that we've set up our project, it's time to write some code!</p>
+<p>Add the following to <code>src/lib.rs</code>.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        type RustApp;
+
+        #[swift_bridge(init)]
+        fn new() -&gt; RustApp;
+
+        fn generate_html(&amp;self, rust_code: &amp;str) -&gt; String;
+    }
+}
+
+pub struct RustApp {}
+
+impl RustApp {
+    fn new() -&gt; Self {
+        RustApp {}
+    }
+
+    fn generate_html(&amp;self, rust_code: &amp;str) -&gt; String {
+        let (analysis, file_id) = ide::Analysis::from_single_file(rust_code.to_string());
+
+        analysis
+            .highlight_as_html(file_id, true)
+            .unwrap_or(&quot;Error&quot;.to_string())
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="swift"><a class="header" href="#swift">Swift</a></h2>
+<p>Add the following to <code>IosRustAnalyzerApp.swift</code></p>
+<pre><code class="language-swift">import SwiftUI
+
+@main
+struct IosRustAnalyzerApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .environmentObject(RustAppWrapper(rust: RustApp()))
+        }
+    }
+}
+
+class RustAppWrapper: ObservableObject {
+    var rust: RustApp
+    
+    init (rust: RustApp) {
+        self.rust = rust
+    }
+}
+</code></pre>
+<hr />
+<p>Add the following to <code>ContentView.swift</code></p>
+<pre><code class="language-swift">import SwiftUI
+import WebKit
+import Combine
+
+struct ContentView: View {
+    @EnvironmentObject var rustApp: RustAppWrapper
+    
+    @State private var rustSource = initialSource
+    @State private var rustHtml = &quot;&quot;
+    
+    var body: some View {
+        VStack {
+            TextEditor(text: $rustSource)
+                .font(.caption)
+                .onReceive(Just(rustSource), perform: {sourceCode in
+                    let html = rustApp.rust.generate_html(sourceCode).toString()
+                    rustHtml = html
+                })
+            
+            WebView(text: $rustHtml)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+            
+        }
+    }
+}
+
+struct WebView: UIViewRepresentable {
+    @Binding var text: String
+    
+    func makeUIView(context: Context) -&gt; WKWebView {
+        return WKWebView()
+    }
+    
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+        uiView.loadHTMLString(text, baseURL: nil)
+    }
+}
+
+let initialSource = &quot;&quot;&quot;
+
+fn main () {
+    let stack: Stack&lt;u8&gt; = Stack::default();
+    
+    for val in 0..100 {
+        stack.push(val);
+    }
+}
+
+#[derive(Default)]
+struct Stack&lt;T&gt;(Vec&lt;T&gt;);
+
+impl&lt;T&gt; Stack&lt;T&gt; {
+    fn push(&amp;mut self, val: T) {
+        self.0.push(val);
+    }
+
+    fn pop(&amp;mut self) -&gt; Option&lt;T&gt; {
+        self.0.pop()
+    }
+}
+
+&quot;&quot;&quot;
+ 
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .environmentObject(RustAppWrapper(rust: RustApp()))
+    }
+}
+</code></pre>
+<hr />
+<p>Make sure that you see 4 files in your <code>Compile Sources</code> build phase.</p>
+<p><img src="building/xcode-and-cargo/./screenshots/xcode-compile-sources.png" alt="Xcode compile sources build phase" /></p>
+<hr />
+<p>Runing the application in the iPhone simulator using <code>Cmd</code> + <code>R</code> should show a working demo!</p>
+<p><img src="building/xcode-and-cargo/./screenshots/simulator-rust-analyzer-app.png" alt="Simulator rust analyzer app" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="swiftc--cargo"><a class="header" href="#swiftc--cargo">swiftc + Cargo</a></h1>
+<p>One approach to building Rust and Swift is to use <code>Cargo</code> to compile your Rust code and <code>swiftc</code> to compile your Swift code.</p>
+<p>In this case, either <code>Cargo</code> needs to link to a compiled Swift native library, or <code>swiftc</code> needs to link to a compiled Rust
+native library.</p>
+<p>We'll use an example project to explore both of these approaches.</p>
+<h2 id="project-setup-1"><a class="header" href="#project-setup-1">Project Setup</a></h2>
+<pre><code>cargo new --lib swift-and-rust
+cd swift-and-rust
+</code></pre>
+<pre><code class="language-toml"># Cargo.toml
+
+[build-dependencies]
+swift-bridge-build = &quot;0.1&quot;
+
+[dependencies]
+swift-bridge = &quot;0.1&quot;
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">// src/main.rs
+fn main() {
+    swift_and_rust::print_hello_swift();
+}
+</code></pre></pre>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// src/lib.rs
+
+pub use ffi::print_hello_swift;
+
+#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        fn print_hello_rust();
+    }
+
+    extern &quot;Swift&quot; {
+        fn print_hello_swift();
+    }
+}
+
+fn print_hello_rust() {
+    println!(&quot;Hello from Rust&quot;)
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-swift">// main.swift
+run()
+</code></pre>
+<pre><code class="language-swift">// lib.swift
+func print_hello_swift() {
+    print(&quot;Hello from Swift&quot;)
+}
+
+func run() {
+    print_hello_rust()
+}
+</code></pre>
+<pre><code class="language-sh"># briding-header.h
+
+#ifndef BridgingHeader_h
+#define BridgingHeader_h
+
+#include &quot;./generated/SwiftBridgeCore.h&quot;
+#include &quot;./generated/swift-and-rust/swift-and-rust.h&quot;
+
+#endif /* BridgingHeader_h */
+</code></pre>
+<pre><code class="language-sh">mkdir generated
+</code></pre>
+<h2 id="swift-links-to-a-rust-native-library"><a class="header" href="#swift-links-to-a-rust-native-library">Swift links to a Rust native library</a></h2>
+<p>Add the following to your Cargo.toml</p>
+<pre><code class="language-toml"># Cargo.toml
+
+[lib]
+crate-type = [&quot;staticlib&quot;]
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">// build.rs
+
+use std::path::PathBuf;
+
+fn main() {
+    let out_dir = PathBuf::from(&quot;./generated&quot;);
+
+    let bridges = vec![&quot;src/lib.rs&quot;];
+    for path in &amp;bridges {
+        println!(&quot;cargo:rerun-if-changed={}&quot;, path);
+    }
+
+    swift_bridge_build::parse_bridges(bridges)
+        .write_all_concatenated(out_dir, env!(&quot;CARGO_PKG_NAME&quot;));
+}
+</code></pre></pre>
+<pre><code class="language-sh"># build-swiftc-links-rust.sh
+
+#!/bin/bash
+set -e
+
+export SWIFT_BRIDGE_OUT_DIR=&quot;$(pwd)/generated&quot;
+
+cargo build --target x86_64-apple-darwin
+swiftc -L target/x86_64-apple-darwin/debug/ -lswift_and_rust -import-objc-header bridging-header.h \
+  main.swift lib.swift ./generated/swift-and-rust/swift-and-rust.swift
+</code></pre>
+<pre><code class="language-sh">chmod +x build-swiftc-links-rust.sh
+./build-swiftc-links-rust.sh
+./main
+# The output should be &quot;Hello from Rust&quot;
+</code></pre>
+<h2 id="rust-links-to-a-swift-native-library"><a class="header" href="#rust-links-to-a-swift-native-library">Rust links to a Swift native library</a></h2>
+<p>Unlike the when we had <code>swiftc</code> in the Rust code, you do not need to set the <code>crate-type</code>
+when you have <code>Cargo</code> linking in the Swift code.</p>
+<pre><pre class="playground"><code class="language-rust">// build.rs
+use std::path::PathBuf;
+
+fn main() {
+    let out_dir = PathBuf::from(&quot;./generated&quot;);
+
+    let bridges = vec![&quot;src/lib.rs&quot;];
+    for path in &amp;bridges {
+        println!(&quot;cargo:rerun-if-changed={}&quot;, path);
+    }
+
+    swift_bridge_build::parse_bridges(bridges)
+        .write_all_concatenated(out_dir, env!(&quot;CARGO_PKG_NAME&quot;));
+
+    println!(&quot;cargo:rustc-link-lib=static=swiftc_link_rust&quot;);
+    println!(&quot;cargo:rustc-link-search=./&quot;);
+}
+</code></pre></pre>
+<pre><code class="language-sh"># build-swift-static-lib.sh
+
+#!/bin/bash
+set -e
+
+# The swift-bridge CLI does not exist yet. Open an issue if you need to use
+# this approach and I'll happily whip up the CLI.
+swift-bridge -f src/lib.rs &gt; generated
+
+swiftc -emit-library -static -module-name my_swift -import-objc-header bridging-header.h \
+  lib.swift ./generated/swift-and-rust/swift-and-rust.swift
+</code></pre>
+<pre><code class="language-sh">chmod +x build-swift-static-lib.sh
+./build-swift-static-lib.sh
+
+cargo build
+./target/debug/swift_and_rust
+# The output should be &quot;Hello from Swift&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="creating-swift-packages"><a class="header" href="#creating-swift-packages">Creating Swift Packages</a></h1>
+<p>In this chapter we'll walk through bundling your Rust library into a Swift Package.</p>
+<blockquote>
+<p>Swift Packages that contain binary dependencies are only available on Apple platforms.</p>
+<p>You cannot bundle your Rust code into a Swift Package if you plan to target Linux,
+Windows or any other non-Apple target.</p>
+<p>Instead, use a building approach from one of the other <a href="building/swift-packages/../README.html">building chapters</a>.</p>
+</blockquote>
+<h2 id="project-setup-2"><a class="header" href="#project-setup-2">Project setup</a></h2>
+<pre><code class="language-bash">mkdir my-rust-lib &amp;&amp; cd my-rust-lib
+</code></pre>
+<pre><code class="language-toml"># Cargo.toml
+
+[lib]
+crate-type = [&quot;staticlib&quot;]
+
+[build-dependencies]
+swift-bridge-build = &quot;0.1&quot;
+
+[dependencies]
+swift-bridge = &quot;0.1&quot;
+</code></pre>
+<p>In <code>src/lib.rs</code>, add the following:</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// src/lib.rs
+
+#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        fn hello_rust() -&gt; String;
+    }
+}
+
+fn hello_rust() -&gt; String {
+    String::from(&quot;Hello from Rust!&quot;)
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Create a new <code>build.rs</code> file with the following contents:</p>
+<pre><code class="language-sh">touch build.rs
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">// build.rs
+
+use std::path::PathBuf;
+
+fn main() {
+    let out_dir = PathBuf::from(&quot;./generated&quot;);
+
+    let bridges = vec![&quot;src/lib.rs&quot;];
+    for path in &amp;bridges {
+        println!(&quot;cargo:rerun-if-changed={}&quot;, path);
+    }
+
+    swift_bridge_build::parse_bridges(bridges)
+        .write_all_concatenated(out_dir, env!(&quot;CARGO_PKG_NAME&quot;));
+}
+</code></pre></pre>
+<p>Create a new bash script for building our Rust native libraries along with a folder
+that we'll write our parsed bridges too.</p>
+<pre><code>touch build-rust.sh
+chmod +x build-rust.sh
+mkdir generated
+</code></pre>
+<pre><code class="language-bash"># build-rust.sh
+
+#!/bin/bash
+
+set -e
+
+THISDIR=$(dirname $0)
+cd $THISDIR
+
+export SWIFT_BRIDGE_OUT_DIR=&quot;$(pwd)/generated&quot;
+# Build the project for the desired platforms:
+cargo build --target x86_64-apple-darwin
+cargo build --target aarch64-apple-darwin
+mkdir -p ./target/universal-macos/debug
+
+lipo \
+    ./target/aarch64-apple-darwin/debug/libmy_rust_lib.a \
+    ./target/x86_64-apple-darwin/debug/libmy_rust_lib.a -create -output \
+    ./target/universal-macos/debug/libmy_rust_lib.a
+
+cargo build --target aarch64-apple-ios
+
+cargo build --target x86_64-apple-ios
+cargo build --target aarch64-apple-ios-sim
+mkdir -p ./target/universal-ios/debug
+
+lipo \
+    ./target/aarch64-apple-ios-sim/debug/libmy_rust_lib.a \
+    ./target/x86_64-apple-ios/debug/libmy_rust_lib.a -create -output \
+    ./target/universal-ios/debug/libmy_rust_lib.a
+</code></pre>
+<p>Install Rust toolchains for the desired platforms:</p>
+<pre><code class="language-bash">rustup target add x86_64-apple-darwin aarch64-apple-darwin aarch64-apple-ios x86_64-apple-ios aarch64-apple-ios-sim
+</code></pre>
+<p>Run the script to build our Rust libraries:</p>
+<pre><code class="language-sh">./build-rust.sh
+</code></pre>
+<p>We can now use the <code>API</code> or the <code>CLI</code> to package the generated bridging code and the Rust libraries into a Swift Package.</p>
+<h4 id="api"><a class="header" href="#api">API</a></h4>
+<p>Here's an example of using the API to package up our generated bridging code and our Rust libraries into a Swift Package.</p>
+<pre><pre class="playground"><code class="language-rust">use std::path::PathBuf;
+use std::collections::HashMap;
+use swift_bridge_build::{CreatePackageConfig, ApplePlatform};
+fn main() {
+    swift_bridge_build::create_package(CreatePackageConfig {
+        bridge_dir: PathBuf::from(&quot;./generated&quot;),
+        paths: HashMap::from([
+            (ApplePlatform::IOS, &quot;target/aarch64-apple-ios/debug/libmy_rust_lib.a&quot;.into()),
+            (ApplePlatform::Simulator, &quot;target/universal-ios/debug/libmy_rust_lib.a&quot;.into()),
+            (ApplePlatform::MacOS, &quot;target/universal-macos/debug/libmy_rust_lib.a&quot;.into()),
+        ]),
+        out_dir: PathBuf::from(&quot;MySwiftPackage&quot;),
+        package_name: PathBuf::from(&quot;MySwiftPackage&quot;)
+    });
+}
+</code></pre></pre>
+<h4 id="cli"><a class="header" href="#cli">CLI</a></h4>
+<p>You can use the <code>swift-bridge</code> CLI's <code>create-package</code> command in order to create a Swift Package.</p>
+<p>First, install the CLI.</p>
+<pre><code class="language-bash">cargo install -f swift-bridge-cli
+swift-bridge-cli --help
+</code></pre>
+<p>Then, run the following to package up your generated bridges and your Rust libraries into a Swift Package.</p>
+<pre><code class="language-bash">swift-bridge-cli create-package \
+  --bridges-dir ./generated \
+  --out-dir MySwiftPackage \
+  --ios target/aarch64-apple-ios/debug/libmy_rust_lib.a \
+  --simulator target/universal-ios/debug/libmy_rust_lib.a \
+  --macos target/universal-macos/debug/libmy_rust_lib.a \
+  --name MySwiftPackage
+</code></pre>
+<h2 id="using-the-swift-package"><a class="header" href="#using-the-swift-package">Using the Swift Package</a></h2>
+<p>We now have a Swift Package (in the <code>MySwiftPackage</code> directory) which we can include in other projects using the Swift Package Manager.</p>
+<h3 id="using-the-package-in-an-xcode-project"><a class="header" href="#using-the-package-in-an-xcode-project">Using the package in an Xcode project</a></h3>
+<p>To add the package to an iOS app in XCode, go to the target's general panel, click the <code>+</code> button in the <code>Frameworks, Libraries, and Embedded Content</code> section. Then, click <code>Add Other</code> and choose <code>Add Package Dependency</code>.</p>
+<p>Import and use it in the same way as the executable.</p>
+<h3 id="using-the-package-in-an-executable-swift-project"><a class="header" href="#using-the-package-in-an-executable-swift-project">Using the package in an executable Swift project</a></h3>
+<p>Here is an example of an executable Swift project that depends on our newly created <code>MySwiftPackage</code>.</p>
+<pre><code>mkdir SwiftProject
+touch SwiftProject/Package.swift
+mkdir -p SwiftProject/Sources/SwiftProject
+touch SwiftProject/Sources/SwiftProject/main.swift
+</code></pre>
+<p>Add these contents to <code>SwiftProject/Package.swift</code>.</p>
+<pre><code class="language-swift">// SwiftProject/Package.swift
+
+// swift-tools-version:5.5.0
+import PackageDescription
+let package = Package(
+    name: &quot;SwiftProject&quot;,
+    dependencies: [
+        .package(path: &quot;../MySwiftPackage&quot;)
+    ],
+    targets: [
+        .executableTarget(
+            name: &quot;SwiftProject&quot;,
+            dependencies: [
+                .product(name: &quot;MySwiftPackage&quot;, package: &quot;MySwiftPackage&quot;)
+            ])
+    ]
+)
+</code></pre>
+<p>And then add this to our <code>SwiftProject/Sources/SwiftProject/main.swift</code> file.</p>
+<pre><code class="language-swift">// SwiftProject/Sources/SwiftProject/main.swift
+
+import MySwiftPackage
+
+print(hello_rust().toString())
+</code></pre>
+<p>And now you can run your Swift project that depends on your Rust based Swift Package:</p>
+<pre><code>cd SwiftProject
+swift run
+# You should see &quot;Hello from Rust!&quot; in your terminal.
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-bridge-module"><a class="header" href="#the-bridge-module">The Bridge Module</a></h1>
+<p>With <code>swift-bridge</code> you use a &quot;bridge module&quot; in order to declare your FFI interface.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    // Export Rust types and functions for Swift to use.
+    extern &quot;Rust&quot; {
+        type SomeRustType;
+        fn some_type_method(&amp;mut self) -&gt; String;
+    }
+
+    // Import Swift types and functions for Swift to use.
+    extern &quot;Swift&quot; {
+        type SomeSwiftClass;
+
+        #[swift_bridge(swift_name = &quot;someClassMethod&quot;)]
+        fn some_class_method(&amp;self, arg: u8);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Your bridge module can contain any number of <code>extern &quot;Rust&quot;</code> and <code>extern &quot;Swift&quot;</code> blocks, each declaring types
+and functions to expose to and import from Swift, respectively.</p>
+<h2 id="how-it-works"><a class="header" href="#how-it-works">How it Works</a></h2>
+<p>After you declare your bridge module, you use two code generators at build time to make the FFI layer
+that you described work.</p>
+<p>One code generator generates the Rust side of the FFI layer, and the other code generator produces the Swift side.</p>
+<h4 id="rust-code-generation"><a class="header" href="#rust-code-generation">Rust code generation</a></h4>
+<p>The <code>#[swift_bridge::bridge]</code> procedural macro parses your bridge module at compile time and then
+generates the Rust side of your FFI layer.</p>
+<h4 id="swift-code-generation"><a class="header" href="#swift-code-generation">Swift code generation</a></h4>
+<p>At build time you run <code>swift-bridge-build</code> (or <code>swift-bridge-cli</code> for non-Cargo based setups) on files that contain
+bridge modules in order to generate the <code>Swift</code> and <code>C</code> code necessary to make your bridge work.</p>
+<h2 id="lets-begin"><a class="header" href="#lets-begin">Let's Begin</a></h2>
+<p>This section's sub chapters will go into detail about the different ways that you can use bridge modules to
+connect Rust and Swift.</p>
+<p>In the meantime, here's a quick peak of a simple bridge module:</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Use the `swift_bridge::bridge` macro to declare a bridge module that
+// `swift-bridge-build` will parse at build time in order to generate
+// the necessary Swift and C FFI glue code.
+#[swift_bridge::bridge]
+mod ffi {
+    // Create shared structs where both Rust and Swift can directly access the fields.
+    struct AppConfig {
+        file_manager: CustomFileManager,
+    }
+
+    // Shared enums are also supported
+    enum UserLookup {
+        ById(UserId),
+        ByName(String),
+    }
+
+    // Export Rust types, functions and methods for Swift to use.
+    extern &quot;Rust&quot; {
+        type RustApp;
+
+        #[swift_bridge(init)]
+        fn new(config: AppConfig);
+        
+        fn insert_user(&amp;mut self, user_id: UserId, user: User);
+        fn get_user(&amp;self, lookup: UserLookup) -&gt; Option&lt;&amp;User&gt;;
+    }
+
+    extern &quot;Rust&quot; {
+        type User;
+
+        #[swift_bridge(Copy(4))]
+        type UserId;
+
+        #[swift_bridge(init)]
+        fn new(user_id: UserId, name: String, email: Option&lt;String&gt;) -&gt; User;
+    }
+
+    // Import Swift classes and functions for Rust to use.
+    extern &quot;Swift&quot; {
+        type CustomFileManager;
+        fn save_file(&amp;self, name: &amp;str, contents: &amp;[u8]);
+    }
+}
+
+#[derive(Copy)]
+struct UserId(u32);
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
+<p>... TODO OVERVIEW ...</p>
+<h2 id="function-attributes"><a class="header" href="#function-attributes">Function Attributes</a></h2>
+<h4 id="swift_bridgeidentifiable"><a class="header" href="#swift_bridgeidentifiable">#[swift_bridge(Identifiable)]</a></h4>
+<p>Used to generate a Swift <code>Identifiable</code> protocol implementation.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Rust
+
+#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        type SomeType;
+
+        #[swift_bridge(Identifiable, swift_name = &quot;someFunction&quot;)]
+        fn some_function(&amp;self) -&gt; i16;
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-swift">// Generated Swift
+// (rough example, the real generated code looks a little different)
+
+class SomeType {
+    // ...
+}
+extension SomeType: Identifiable {
+    var id: UInt16 {
+        return self.someFunction()
+    }
+}
+</code></pre>
+<h4 id="swift_bridgeargs_into--arg_name-another_arg_name"><a class="header" href="#swift_bridgeargs_into--arg_name-another_arg_name">#[swift_bridge(args_into = (arg_name, another_arg_name))]</a></h4>
+<p>Used to name the arguments that should have <code>.into()</code> called on them when
+passing them to their handler function.</p>
+<p>One use case is for exposing a third-party type as a shared struct.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>mod pretend_this_is_some_third_party_crate {
+    // We want to expose this third-party struct as a shared struct.
+    pub struct UniqueId {
+        id: u64
+    }
+}
+use pretend_this_is_some_third_party_crate::UniqueId;
+
+fn a_function (_some_arg: UniqueId, _an_arg: UniqueId, _cool_arg: u8) {
+    // ...
+}
+
+mod ffi {
+    struct FfiUniqueId(u64);
+
+    extern &quot;Rust&quot; {
+        // super::a_function does not take a `u64` or an `FfiUniqueId`,
+        // but this still works since they both `impl Into&lt;UniqueId&gt;`.
+        #[swift_bridge(args_into = (some_arg, an_arg))]
+        fn a_function(some_arg: u64, an_arg: FfiUniqueId, cool_arg: u8);
+    }
+}
+
+impl From&lt;u64&gt; for UniqueId {
+    fn from(id: u64) -&gt; UniqueId {
+        UniqueId {
+            id
+        }
+    }
+}
+
+impl Into&lt;UniqueId&gt; for ffi::FfiUniqueId {
+    fn into(self) -&gt; UniqueId {
+        UniqueId(self.0)
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="swift_bridgeassociated_to--sometype"><a class="header" href="#swift_bridgeassociated_to--sometype">#[swift_bridge(associated_to = SomeType)]</a></h4>
+<p>Indicates that we are exposing an associated function for a type.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Rust
+
+#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        type Message;
+
+        // Exposes Message::parse to Swift as Message.parse
+        #[swift_bridge(associated_to = Message)]
+        fn parse(text: &amp;str) -&gt; Option&lt;Message&gt;;
+    }
+}
+
+struct LongMessage(String);
+
+impl LongMessage {
+    fn parse(text: impl ToString) -&gt; Option&lt;Self&gt; {
+        let text = text.to_string();
+
+        if text.len() &gt; 10_000 {
+            Some(LongMessage(text))
+        } else {
+            None
+        }
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-swift">// Swift
+
+func maybeSendLongMessage(text: String) {
+    let maybeMessage = Message.parse(text)
+    
+    if let message = maybeMessage {
+        // ... send the message
+    }
+}
+</code></pre>
+<h4 id="swift_bridgegetfield_name"><a class="header" href="#swift_bridgegetfield_name">#[swift_bridge(get(field_name))]</a></h4>
+<p>Allows you to return the value of an opaque Rust struct's field.</p>
+<p>You can prefix the field name with <code>&amp;</code> or <code>&amp;mut</code> in order to return a reference
+or mutable reference to the field.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        type SomeType;
+
+        // Returns self.my_u8
+        #[swift_bridge(get(my_u8))]
+        fn my_u8(&amp;self) -&gt; u8;
+
+        // Returns &amp;self.my_string
+        #[swift_bridge(get(&amp;my_string))]
+        fn my_string_reference(&amp;self) -&gt; &amp;str;
+    }
+}
+
+pub struct SomeType {
+    my_u8: u8,
+    my_string: String,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="swift_bridgeget_withfield_name--pathtofunction"><a class="header" href="#swift_bridgeget_withfield_name--pathtofunction">#[swift_bridge(get_with(field_name = path::to::function))]</a></h4>
+<p>Allows you to pass an opaque Rust struct's field into a function and then return
+the value that that function returned.</p>
+<p>You can prefix the field name with <code>&amp;</code> or <code>&amp;mut</code> in order to pass the field
+to the function by reference or mutable reference respectively.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use Clone;
+
+#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        type SomeType;
+
+        // Returns ui_to_i16(self.my_u8)
+        #[swift_bridge(get_with(my_u8 = u8_to_i16))]
+        fn my_u8_converted(&amp;self) -&gt; u16;
+
+        // Returns Clone::clone(&amp;self.my_string)
+        #[swift_bridge(get_with(&amp;my_string = Clone::clone))]
+        fn my_string_cloned(&amp;self) -&gt; String;
+
+        // Returns string_to_u32(&amp;self.my_string)
+        #[swift_bridge(get_with(&amp;my_string = string_to_u32))]
+        fn my_string_parsed(&amp;self) -&gt; u32;
+    }
+}
+
+pub struct SomeType {
+    my_u8: u8,
+    my_string: String,
+}
+
+fn u8_to_i16 (num: u8) -&gt; i16 {
+    num as i16
+}
+
+fn string_to_u32(string: &amp;str) -&gt; u32 {
+    string.parse().unwrap()
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="swift_bridgereturn_into"><a class="header" href="#swift_bridgereturn_into">#[swift_bridge(return_into)]</a></h4>
+<p>Allows a swift-bridge definition of <code>fn foo() -&gt; T</code> to work for any <code>fn foo() -&gt; impl Into&lt;T&gt;</code>.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use some_other_crate::Uuid;
+
+#[swift_bridge::bridge]
+mod ffi {
+	struct FfiUuid {
+	    uuid: [u8; 16]
+	}
+
+    extern &quot;Rust&quot; {
+        #[swift_bridge(return_into)]
+        fn make_uuid() -&gt; FfiUuid;
+    }
+}
+
+impl From&lt;Uuid&gt; for ffi::FFiUuid {
+	fn from(uuid: Uuid) -&gt; ffi::FfiUuid {
+	    unsafe { std::mem::transmute(uuid) }
+	}
+}
+
+use self::some_other_crate::make_uuid;
+mod some_other_crate {
+	pub struct Uuid {
+	    uuid: [u8; 16]
+	}
+
+    // Here we can return a Uuid, even though swift-bridge is expecting an FfiUuid.
+    pub fn make_uuid() -&gt; Uuid {
+        Uuid::new_v4()
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="swift_bridgereturn_with--pathtosome_function"><a class="header" href="#swift_bridgereturn_with--pathtosome_function">#[swift_bridge(return_with = path::to::some_function)]</a></h4>
+<p>Allows a swift-bridge definition of <code>fn foo() -&gt; T</code> to work for a <code>fn foo() -&gt; U</code> by
+passing <code>T</code> to a <code>fn(T) -&gt; U</code>.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        #[swift_bridge(return_with = some_module::convert_str_to_u32)]
+        fn get_str_value_return_with() -&gt; u32;
+    }
+}
+
+fn get_str_value_return_with() -&gt; &amp;'static str {
+    &quot;123&quot;
+}
+
+mod some_module {
+    pub fn convert_str_to_u32(val: &amp;str) -&gt; u32 {
+        val.parse().unwrap()
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="swift_bridgerust_name--function_name"><a class="header" href="#swift_bridgerust_name--function_name">#[swift_bridge(rust_name = &quot;function_name&quot;)]</a></h4>
+<p>Use the given <code>rust_name</code> to find the function's implementation.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use some_other_crate::Uuid;
+
+#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        #[swift_bridge(rust_name = &quot;another_function&quot;)]
+        fn some_function();
+    }
+}
+
+fn another_function() {
+}
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="opaque-types"><a class="header" href="#opaque-types">Opaque Types</a></h1>
+<p>... TODO OVERVIEW ...</p>
+<h2 id="exposing-opaque-rust-types"><a class="header" href="#exposing-opaque-rust-types">Exposing Opaque Rust Types</a></h2>
+<p><code>extern &quot;Rust</code> sections are used to expose Rust types and their associated methods and functions
+so that they can be used from Swift code.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>mod science;
+use science::{ScienceLab, Hydrogen, Oxygen, make_water};
+
+#[swift_bridge::bridge]
+mod ffi {
+	extern &quot;Rust&quot; {
+	    type Water;
+
+        #[swift_bridge(associated_to = &quot;Water&quot;)]
+	    fn new() -&gt; Water;
+
+	    fn is_wet(&amp;self) -&gt; bool;
+	}
+
+	extern &quot;Rust&quot; {
+	    type ScienceLab;
+	    type Hydrogen;
+	    type Oxygen;
+
+	    fn make_water(
+	        lab: &amp;ScienceLab,
+	        hydrogen: Hydrogen,
+	        oxygen: Oxygen
+	    ) -&gt; Water;
+	}
+}
+
+pub struct Water;
+
+impl Water {
+	fn new () -&gt; Self {
+	    Water
+	}
+
+	fn is_wet(&amp;self) -&gt; bool {
+	    unreachable!(&quot;Seriously...?&quot;)
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="owned-ref-and-refmut"><a class="header" href="#owned-ref-and-refmut">Owned, Ref and RefMut</a></h2>
+<p>When you define a type in an <code>extern &quot;Rust&quot;</code> block, three corresponding Swift classes get generated.</p>
+<pre><code class="language-swift">// Equivalent to `SomeType` in Rust
+class SomeType: SomeTypeRefMut {
+    // ...
+}
+
+// Equivalent to `&amp;mut SomeType` in Rust
+class SomeTypeRefMut: SomeTypeRef {
+    // ... 
+}
+
+// Equivalent to `&amp;SomeType` in Rust
+class SomeTypeRef {
+    // ... 
+}
+</code></pre>
+<p>Here's an example of how <code>&amp;Type</code> and <code>&amp;mut Type</code> are enforced:</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Rust
+
+extern &quot;Rust&quot; {
+    type SomeType;
+    
+    #[swift_bridge(init)]
+    fn new() -&gt; SomeType;
+    
+    // Callable by SomeType, SomeTypeRef and SomeTypeRefMut.
+    fn (&amp;self) everyone();
+    
+    // Callable by SomeType, and SomeTypeRefMut.
+    fn (&amp;mut self) only_owned_and_ref_mut();
+    
+    // Only callable by SomeType.
+    fn (self) only_owned();
+}
+
+extern &quot;Rust&quot; {    
+    fn make_ref() -&gt; &amp;'static SomeType;
+    
+    fn make_ref_mut() -&gt; &amp;'static mut SomeType;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-swift">// Swift
+
+func methods() {
+    let someType: SomeType = SomeType()
+    let someTypeRef: SomeTypeRef = make_ref()
+    let someTypeRefMut: SomeTypeRefMut = make_ref_mut()
+    
+    someType.everyone()
+    someType.only_owned_and_ref_mut()
+    someType.only_owned()
+    
+    someTypeRefMut.everyone()
+    someTypeRefMut.only_owned_and_ref_mut()
+    
+    someTypeRef.everyone()
+}
+
+func functions() {
+    let someType: SomeType = SomeType()
+    let someTypeRef: SomeTypeRef = make_ref()
+    let someTypeRefMut: SomeTypeRefMut = make_ref_mut()
+
+    takeReference(someType)
+    takeReference(someTypeRef)
+    takeReference(someTypeRefMut)
+}
+
+// Can be called with SomeType, SomeTypeRef and SomeTypeRefMut
+func useSomeType(someType: SomeTypeRef) {
+    // ...
+}
+</code></pre>
+<h2 id="opaque-type-attributes"><a class="header" href="#opaque-type-attributes">Opaque Type Attributes</a></h2>
+<h4 id="swift_bridgealready_declared"><a class="header" href="#swift_bridgealready_declared">#[swift_bridge(already_declared)]</a></h4>
+<p>The <code>already_declared</code> attribute allows you to use the same type in multiple bridge modules.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use some_crate::App;
+
+mod ffi {
+	extern &quot;Rust&quot; {
+	    type App;
+
+        #[swift_bridge(init)]
+	    fn new() -&gt; App;
+	}
+}
+
+#[swift_bridge::bridge]
+#[cfg(feature = &quot;dev-utils&quot;)]
+mod ffi_dev_utils {
+	extern &quot;Rust&quot; {
+        // We won't emit Swift and C type definitions for this type
+        // since we've already declared it elsewhere.
+	    #[swift_bridge(already_declared)]
+        type App;
+
+        fn create_logged_in_user(&amp;mut self, user_id: u8);
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="swift_bridgecopysize"><a class="header" href="#swift_bridgecopysize">#[swift_bridge(Copy($SIZE))]</a></h4>
+<p>If you have an opaque Rust type that implements <code>Copy</code>, you will typically want to be
+able to pass it between Swift and Rust by copying the bytes instead of allocating.</p>
+<p>For example, let's say you have some new type wrappers for different kinds of IDs
+within your system.</p>
+<pre><code>use uuid:Uuid;
+
+#[derive(Copy)]
+struct UserId(Uuid);
+
+#[derive(Copy)]
+struct OrganizationId(Uuid);
+</code></pre>
+<p>You can expose them using:</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        #[swift_bridge(Copy(16))]
+        type UserId;
+
+        #[swift_bridge(Copy(16))]
+        type OrganizationId;
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>The <code>16</code> indicates that a <code>UserId</code> has 16 bytes.</p>
+<p><code>swift-bridge</code> will add a compile time assertion that confirms that the given size is correct.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="transparent-types"><a class="header" href="#transparent-types">Transparent Types</a></h1>
+<p><code>swift-bridge</code> supports defining structs and enums who's fields can be
+seen by both Swift and Rust.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="transparent-structs"><a class="header" href="#transparent-structs">Transparent Structs</a></h1>
+<p>You can define structs whos fields can be accessed by both Rust and Swift.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Rust
+
+#[swift_bridge::bridge]
+mod ffi {
+    #[swift_bridge::bridge(swift_repr = &quot;struct&quot;)]
+    struct SomeSharedStruct {
+        some_field: u8,
+        another_field: Option&lt;u64&gt;
+    }
+
+    extern &quot;Rust&quot; {
+        fn some_function(val: SomeSharedStruct);
+    }
+
+    extern &quot;Swift&quot; {
+        fn another_function() -&gt; SomeSharedStruct;
+    }
+}
+
+fn some_function (val: ffi::SomeSharedStruct) {
+    // ...
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-swift">// Swift 
+
+func another_function() -&gt; SomeSharedStruct {
+    return SomeSharedStruct(some_field: 123, another_field: nil)
+}
+</code></pre>
+<h3 id="struct-attributes"><a class="header" href="#struct-attributes">Struct Attributes</a></h3>
+<h4 id="swift_bridgebridgealready_declared"><a class="header" href="#swift_bridgebridgealready_declared">#[swift_bridge::bridge(already_declared)]</a></h4>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi_1 {
+    #[swift_bridge(swift_repr = &quot;struct&quot;)]
+    struct SomeSharedStruct {
+        some_field: u8
+    }
+}
+
+use ffi_1::SomeSharedStruct;
+
+#[swift_bridge::bridge]
+mod ffi_2 {
+    // The `already_declared` indicates that instead of creating a new Struct
+    // we should use super::SomeSharedStruct;
+    #[swift_bridge(already_declared, swift_repr = &quot;struct&quot;)]
+    struct SomeSharedStruct;
+
+    extern &quot;Rust&quot; {
+        fn some_function() -&gt; SomeSharedStruct;
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="swift_bridgebridgeswift_repr--"><a class="header" href="#swift_bridgebridgeswift_repr--">#[swift_bridge::bridge(swift_repr = &quot;...&quot;)]</a></h4>
+<p><em>Valid values are &quot;struct&quot; or &quot;class&quot;.</em></p>
+<p>How the struct should appear on the Swift side.</p>
+<p>Swift structs are copy-on-write, so we do not allow you to mutate the fields of a <code>swift_repr = &quot;struct&quot;</code>
+since you wouldn't be changing the original struct.</p>
+<p>The <code>swift_repr =&quot;class&quot;</code> representation allows you to pass mutable references to shared structs between Rust and Swift.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Rust
+
+#[swift_bridge::bridge]
+mod ffi {
+    #[swift_bridge(struct_repr = &quot;struct&quot;)]
+    struct SomeStructReprStruct {
+        field: UInt8,
+    }
+
+    #[swift_bridge(struct_repr = &quot;class&quot;)]
+    struct SomeStructReprClass {
+        field: UInt8,
+    }
+
+    // NOTE: This is aspirational. Exposing methods on shared structs
+    //  doesn't actually work yet.
+    extern &quot;Rust&quot; {
+        // All structs can expose `&amp;self` methods.
+        fn repr_struct_ref(self: &amp;SomeStructReprStruct);
+        fn repr_class_ref(self: &amp;SomeStructReprStruct);
+
+        // Only structs with `swift_repr = &quot;class&quot;` can expose `&amp;self` methods.
+        fn repr_class_ref_mut(self: &amp;mut SomeStructReprStruct);
+    }
+}
+
+impl ffi::SomeStructReprStruct {
+    fn repr_struct_ref(&amp;self) {
+        // ...
+    }
+
+    // swift-bridge cannot expose this method since mutable methods
+    // on `swift_repr = &quot;struct&quot;` structs are not supported.
+    fn repr_struct_ref_mut(&amp;mut self) {
+        // ...
+    }
+}
+
+impl ffi::SomeStructReprClass {
+    fn repr_class_ref(&amp;self) {
+        // ...
+    }
+
+    fn repr_class_ref_mut(&amp;mut self) {
+        // ...
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-swift">// Generated Swift
+
+struct SomeStructReprStruct {
+    var field: UInt8
+    
+    func repr_struct_ref() {
+      // ... call Rust's SomeStructReprStruct.repr_struct_ref() ...
+    }
+}
+
+class SomeStructReprClass: SomeStructReprClassRefMut {
+    // ...
+}
+class SomeStructReprClassRefMut: SomeStructReprClassRef {
+    // ...
+}
+class SomeStructReprClassRef {
+    // ...
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="transparent-enums"><a class="header" href="#transparent-enums">Transparent Enums</a></h1>
+<p>You can define enums that can be created by both Rust and Swift.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Rust
+
+#[swift_bridge::bridge]
+mod ffi {
+    enum BarCode {
+        Upc(i32, i32, i32, i32),
+        QrCode {
+            code: String
+        }
+    }
+
+    extern &quot;Rust&quot; {
+        fn get_link(code: BarCode) -&gt; String;
+    }
+
+    extern &quot;Swift&quot; {
+        fn create_bar_code(upc: bool) -&gt; BarCode;
+    }
+}
+
+fn get_link (code: BarCode) -&gt; String {
+    // ...
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-swift">// Swift 
+
+func create_bar_code(upc: Bool) -&gt; BarCode {
+    if upc {
+        return BarCode.Upc(8, 85909, 51226, 3)
+    } else {
+        return BarCode.QrCode(code: &quot;ABCDEFG&quot;)
+    }
+}
+</code></pre>
+<h3 id="enum-attributes"><a class="header" href="#enum-attributes">Enum Attributes</a></h3>
+<h4 id="swift_bridgealready_declared-1"><a class="header" href="#swift_bridgealready_declared-1">#[swift_bridge(already_declared)]</a></h4>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi_1 {
+    enum SomeTransparentEnum {
+        Variant
+    }
+}
+
+use ffi_1::SomeTransparentEnum;
+
+#[swift_bridge::bridge]
+mod ffi_2 {
+    // The `already_declared` indicates that instead of creating a new enum
+    // we should use super::SomeTransparentEnum;
+    #[swift_bridge(already_declared)]
+    enum SomeTransparentEnum;
+
+    extern &quot;Rust&quot; {
+        fn some_function() -&gt; SomeTransparentEnum;
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="swift_bridgeswift_name--"><a class="header" href="#swift_bridgeswift_name--">#[swift_bridge(swift_name = &quot;...&quot;)]</a></h4>
+<p>Set the name that is used when generating the enum on the Swift side.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    #[swift_bridge(swift_name = &quot;RenamedEnum&quot;)]
+    enum SomeTransparentEnum {
+        Variant
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="async-functions"><a class="header" href="#async-functions">Async Functions</a></h1>
+<p><code>swift-bridge</code> supports async/await between Swift and Rust.</p>
+<h2 id="async-rust-functions"><a class="header" href="#async-rust-functions">Async Rust Functions</a></h2>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    struct MyStruct;
+    
+    extern &quot;Rust&quot; {
+        async fn some_async_function(list: Vec&lt;u8&gt;) -&gt; MyStruct;
+    }
+}
+
+async fn some_async_function(list: Vec&lt;u8&gt;) -&gt; ffi::MyStruct {
+    ffi::MyStruct
+}
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="generics"><a class="header" href="#generics">Generics</a></h1>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        // Declare the generic type once.
+        #[swift_bridge(declare_generic)]
+        type MyType&lt;A, B&gt;;
+    }
+
+    extern &quot;Rust&quot; {
+        // Bridge as many monomorphized types as you like.
+        type MyType&lt;u32, String&gt;;
+        fn some_function(arg: MyType&lt;u32, String&gt;) -&gt; &amp;str;
+
+        type MyType&lt;i8, Vec&lt;u8&gt;&gt;;
+    }
+}
+
+pub struct MyType&lt;T, U&gt; {
+    my_field1: T,
+    mu_field2: U
+}
+fn some_function(arg: MyType&lt;u32, String&gt;) -&gt; &amp;str {
+    unimplemented!()
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="generic-copy"><a class="header" href="#generic-copy">Generic Copy</a></h2>
+<p>You do not need to use the <code>declare_geneic</code> attribute for generic opaque Rust types
+that use their <code>Copy</code> implementation across FFI bounds.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        #[swift_bridge(Copy(6))]
+        type MyType&lt;u32, u16&gt;;
+        fn some_function(arg: MyType&lt;u32, u16&gt;) -&gt; &amp;str;
+    }
+}
+
+#[derive(Copy, Clone)]
+pub struct MyType&lt;T, U&gt; {
+    my_field1: T,
+    mu_field2: U
+}
+fn some_function(arg: MyType&lt;u32, u16&gt;) -&gt; &amp;str {
+    unimplemented!()
+}
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="conditional-compilation"><a class="header" href="#conditional-compilation">Conditional Compilation</a></h1>
+<p>You can use <a href="https://doc.rust-lang.org/reference/conditional-compilation.html#the-cfg-attribute">the cfg attribute</a>
+in order to conditionally generate bindings.</p>
+<p>Here's an example of only generating some bindings when a &quot;dev-utils&quot; feature is enabled for the Rust crate.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct App {
+    users: HashMap&lt;u8, Userg&gt;
+}
+
+struct User {
+    is_logged_in: bool
+}
+
+impl App {
+	fn new() -&gt; Self {
+		App {
+		    users: HashMap::new()
+		}
+	}
+
+	#[cfg(feature = &quot;dev-utils&quot;)]
+	fn create_logged_in_user(&amp;mut self, user_id: u8);
+}
+
+mod ffi {
+	extern &quot;Rust&quot; {
+	    type App;
+
+        #[swift_bridge(init)]
+	    fn new() -&gt; App;
+
+		fn create_logged_in_user(&amp;mut self, user_id: u8)  {
+			let user = User {
+			    is_logged_in: true
+			};
+		    self.users.insert(user_id, user)
+		}
+	}
+}
+
+// This example module contains methods that are useful
+// during testing and in SwiftUI previews.
+// It is only available when the Rust crate is compiled with the &quot;dev-utils&quot; feature.
+#[swift_bridge::bridge]
+#[cfg(feature = &quot;dev-utils&quot;)]
+mod ffi_dev_utils {
+	extern &quot;Rust&quot; {
+	    #[swift_bridge(already_declared)]
+        type App;
+
+        fn create_logged_in_user(&amp;mut self, user_id: u8);
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="supported-conditions"><a class="header" href="#supported-conditions">Supported Conditions</a></h2>
+<p>Here are the conditions that are currently supported.</p>
+<p>If you need a condition that isn't yet supported, please open an issue.</p>
+<h4 id="cfgfeature--some-feature"><a class="header" href="#cfgfeature--some-feature">#[cfg(feature = &quot;some-feature&quot;)]</a></h4>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge]
+mod ffi {
+    // The code generator will only generate the corresponding
+    // Swift and C code if the &quot;extra-utils&quot; feature is enabled.
+    #[cfg(feature = &quot;extra-utils&quot;)]
+	extern &quot;Rust&quot; {
+        // ....
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="locations"><a class="header" href="#locations">Locations</a></h2>
+<p>Here are the different things that you can conditionally compile.</p>
+<h4 id="bridge-module"><a class="header" href="#bridge-module">Bridge module</a></h4>
+<p>The bridge module can use the <code>cfg</code> attribute.</p>
+<p>At build time the <code>swift_bridge_build</code> library determines whether or not a module will be compiled.</p>
+<p>If not, we won't generate any of the corresponding C or Swift code for that module.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+// This module's bindings will only be available when the Rust crate is compiled with
+// the `ffi-extras` feature
+#[cfg(feature = &quot;ffi-extras&quot;)]
+mod ffi_extras {
+  // ...
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="extern-rust-blocks"><a class="header" href="#extern-rust-blocks">extern &quot;Rust&quot; blocks</a></h4>
+<p><em>...This hasn't been implemented yet but should be easy...</em></p>
+<p>Functions can methods can use the <code>#[cfg]</code> attribute.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    #[cfg(all(unix, target_pointer_width = &quot;32&quot;))]
+	extern &quot;Rust&quot; {
+        // ...
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="rust-functions-amd-methods"><a class="header" href="#rust-functions-amd-methods">Rust functions amd methods</a></h4>
+<p><em>...This hasn't been implemented yet but should be easy...</em></p>
+<p>Functions and methods can use the <code>#[cfg]</code> attribute.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+	extern &quot;Rust&quot; {
+	    // This function's will only be available when
+        // the Rust crate is compiled targetting Windows.
+        #[cfg(target_os = &quot;windows&quot;)]
+	    fn play_solitaire();
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="built-in-types"><a class="header" href="#built-in-types">Built In Types</a></h1>
+<p>In addition to allowing you to share your own custom types between Rust and Swift,
+<code>swift-bridge</code> comes with support for a number of Rust and Swift standard library types.</p>
+<table><thead><tr><th>name in Rust</th><th>name in Swift</th><th>notes</th></tr></thead><tbody>
+<tr><td>u8, i8, u16, i16... etc</td><td>UInt8, Int8, UInt16, Int16 ... etc</td><td></td></tr>
+<tr><td>bool</td><td>Bool</td><td></td></tr>
+<tr><td>String, &amp;String, &amp;mut String</td><td>RustString, RustStringRef, RustStringRefMut</td><td></td></tr>
+<tr><td>&amp;str</td><td>RustStr</td><td></td></tr>
+<tr><td>Vec&lt;T&gt;</td><td>RustVec&lt;T&gt;</td><td></td></tr>
+<tr><td>SwiftArray&lt;T&gt;</td><td>Array&lt;T&gt;</td><td>Not yet implemented</td></tr>
+<tr><td>&amp;[T]</td><td></td><td>Not yet implemented</td></tr>
+<tr><td>&amp;mut [T]</td><td></td><td>Not yet implemented</td></tr>
+<tr><td>Box<T></td><td></td><td>Not yet implemented</td></tr>
+<tr><td>Box&lt;dyn FnOnce(A,B,C) -&gt; D&gt;</td><td>(A, B, C) -&gt; D</td><td>Passing from Rust to Swift is supported, but Swift to Rust is not yet implemented.</td></tr>
+<tr><td>Box&lt;dyn Fn(A,B,C) -&gt; D&gt;</td><td>(A, B, C) -&gt; D</td><td>Not yet implemented</td></tr>
+<tr><td>[T; N]</td><td></td><td>Not yet implemented</td></tr>
+<tr><td>*const T</td><td>UnsafePointer&lt;T&gt;</td><td></td></tr>
+<tr><td>*mut T</td><td>UnsafeMutablePointer&lt;T&gt;</td><td></td></tr>
+<tr><td>Option&lt;T&gt;</td><td>Optional&lt;T&gt;</td><td></td></tr>
+<tr><td>Result&lt;T, E&gt;</td><td>RustResult&lt;T, E&gt;</td><td></td></tr>
+<tr><td>Have a Rust standard library type in mind?<br /> Open an issue!</td><td></td><td></td></tr>
+<tr><td></td><td>Have a Swift standard library type in mind?<br /> Open an issue!</td><td></td></tr>
+</tbody></table>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="string-----string"><a class="header" href="#string-----string">String &lt;---&gt; String</a></h1>
+<p>Rust's <code>std::string::String</code> can be passed to Swift as an owned <code>String</code>, a referenced <code>&amp;String</code> or 
+a mutably referenced <code>&amp;mut String</code>.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Rust
+
+#[swift_bridge::bridge]
+mod ffi {
+	extern &quot;Rust&quot; {
+	    type SomeRustType;
+
+	    // Becomes a `RustString` when passed to Swift.
+	    fn make_string() -&gt; String;
+
+	    // Becomes a `RustStringRef` when passed to Swift.
+	    fn make_ref_string(&amp;self) -&gt; &amp;String;
+
+	    // Becomes a `RustStringRefMut` when passed to Swift.
+	    fn make_ref_mut_string(&amp;mut self) -&gt; &amp;mut String;
+
+        // Swift calls this with a `RustString` and
+        // Rust receives a `std::string::String`.
+	    fn take_string(string: String);
+	}
+
+	extern &quot;Swift&quot; {
+	    type SomeSwiftType;
+
+        // Swift returns a `RustString` and
+        // Rust receives a `std::string::String`.
+	    fn make_string() -&gt; String;
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="str-----ruststr"><a class="header" href="#str-----ruststr">&amp;str &lt;---&gt; RustStr</a></h1>
+<p>Rust's <code>std::str</code> can be passed to Swift as a <code>RustStr</code>.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Rust
+
+#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+	    type SomeRustType;
+
+	    // Becomes a `RustStr` when passed to Swift.
+	    fn make_str() -&gt; &amp;'static str;
+
+	    fn get_str(self: &amp;SomeRustType) -&gt; &amp;str;
+	}
+
+	extern &quot;Swift&quot; {
+	    type SomeSwiftType;
+
+        // Swift returns a `RustStr` and
+        // Rust receives a `&amp;str`.
+	    fn make_string() -&gt; &amp;str;
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vec----rustvec"><a class="header" href="#vec----rustvec">Vec &lt;--&gt; RustVec</a></h1>
+<p>Rust's <code>std::vec::Vec</code> is seen on the Swift side as a <code>RustVec</code>.</p>
+<p><code>RustVec</code> implements Swift's <code>IteratorProtocol</code>, allowing you do do things like:</p>
+<pre><code class="language-swift">let vec: RustVec = get_rust_vec_somehow()
+for value in vec {
+    print(value)
+}
+</code></pre>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><pre class="playground"><code class="language-rust no_run">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Rust
+
+#[swift_bridge::bridge]
+mod ffi {
+	extern &quot;Rust&quot; {
+	    fn make_rust_vec() -&gt; Vec&lt;u32&gt;;
+
+	    fn make_rust_vec_with_initial_contents(initial: &amp;[i16]) -&gt; Vec&lt;i16&gt;;
+	}
+}
+
+fn make_rust_vec() -&gt; Vec&lt;u32&gt; {
+    vec![5, 8, 11]
+}
+
+fn make_rust_vec_with_initial_contents(initial: &amp;[16]) -&gt; Vec&lt;u16&gt; {
+    intial.to_vec()
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-swift">// In Swift
+
+func testMakeAVec () {
+    let vec: RustVec = get_vec_from_rust()
+
+    XCTAssertEqual(vec.pop(), 5)
+    XCTAssertEqual(vec.pop(), 8)
+    XCTAssertEqual(vec.pop(), 11)
+    XCTAssertEqual(vec.pop(), nil)
+
+    vec.push(50)
+    vec.push(75)
+    XCTAssertEqual(vec.get(1), 75)
+}
+
+func testMakeAnotherVec () {
+    let initial: [Int16] = [3, 5, 7]
+    let vec: RustVec = get_vec_from_rust(initial.toUnsafeBufferPointer())
+
+    XCTAssertEqual(vec.len(), 3);
+
+	for (index, value) in vec.enumerate() {
+	    XCTAssertEqual(value, initial[index])
+	}
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="option-----optional"><a class="header" href="#option-----optional">Option &lt;---&gt; Optional</a></h1>
+<p>Rust's <code>Option</code> is seen on the Swift side as a Swift <code>Optional</code>.</p>
+<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<pre><pre class="playground"><code class="language-rust no_run">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Rust
+
+#[swift_bridge::bridge]
+mod ffi {
+	extern &quot;Rust&quot; {
+	    fn make_rust_option() -&gt; Option&lt;u8&gt;;
+	}
+
+	extern &quot;Swift&quot; {
+	    fn make_swift_optional() -&gt; Option&lt;bool&gt;;
+	}
+}
+
+fn make_rust_option() -&gt; Option&lt;u8&gt; {
+	if ffi::make_swift_optional == Some(true) {
+	    Some(111)
+	} else {
+	    None
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-swift">// Swift
+
+func call_rust_and_divide_by_2() -&gt; Optional&lt;UInt8&gt; {
+	if case let val? = make_rust_option() {
+	    return val / 2
+	} else {
+	    nil
+	}
+}
+
+func make_swift_optional() -&gt; Bool? {
+    true
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="result"><a class="header" href="#result">Result</a></h1>
+<p>Rust's <code>Result</code> is seen on the Swift side as a <code>RustResult</code>.</p>
+<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
+<pre><pre class="playground"><code class="language-rust no_run">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Rust
+
+#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Swift&quot; {
+        fn run(
+            arg: Box&lt;dyn FnOnce(Result&lt;SomeRustType, String&gt;)&gt;
+        );
+    }
+
+    extern &quot;Rust&quot; {
+        type SomeRustType;
+    }
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-swift">func run(arg: (RustResult&lt;SomeRustType, String&gt;) -&gt; ()) {
+    arg(.Err(&quot;Something went wrong&quot;))
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="boxed-functions"><a class="header" href="#boxed-functions">Boxed Functions</a></h1>
+<h2 id="boxdyn-fnoncea-b---c"><a class="header" href="#boxdyn-fnoncea-b---c">Box&lt;dyn FnOnce(A, B) -&gt; C&gt;</a></h2>
+<p><code>swift-bridge</code> supports bridging boxed <code>FnOnce</code> functions with any number of arguments.</p>
+<p>There is a panic if you attempt to call a bridged <code>FnOnce</code> function more than once.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+	extern &quot;Swift&quot; {
+	    type CreditCardReader;
+	    type Card;
+	    type CardError;
+
+        fn processCard(
+            self: &amp;CreditCardReader,
+            callback: Box&lt;dyn FnOnce(Result&lt;Card, CardError&gt;) -&gt; ()&gt;
+        );
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="safety"><a class="header" href="#safety">Safety</a></h1>
+<p><code>swift-bridge</code> is fully type safe and mostly memory safe.</p>
+<h2 id="type-safety"><a class="header" href="#type-safety">Type Safety</a></h2>
+<p>The code that <code>swift-bridge</code> is type safe on both the Rust and Swift side,
+so all of your interfacing between the two languages is type safe.</p>
+<h2 id="memory-safety"><a class="header" href="#memory-safety">Memory Safety</a></h2>
+<p>Needing to worry about memory safety should be very uncommon when using <code>swift-bridge</code>.</p>
+<p>There are two known situations that can lead to unsafe memory access.</p>
+<h4 id="lifetimes"><a class="header" href="#lifetimes">Lifetimes</a></h4>
+<p>It's possible to pass a reference from <code>Rust</code> -&gt; <code>Swift</code> and then have <code>Swift</code> make use of that
+reference after it is no longer safe to do so.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        type SomeType;
+
+        #[swift_bridge(init)]
+        fn new();
+
+        fn name(&amp;str) -&gt; &amp;str;
+        fn drop(self);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-swift">let someType = SomeType()
+
+let name: RustStr = someType.name()
+someType.drop()
+
+// Undefined behavior since `SomeType` was dropped.
+name.toString()
+</code></pre>
+<p>It isn't possible for <code>swift-bridge</code> to mitigate this, so you just have to be careful with references.</p>
+<h4 id="using-an-owned-value-after-free"><a class="header" href="#using-an-owned-value-after-free">Using an owned value after free</a></h4>
+<p>If you pass an owned value from <code>Swift</code> -&gt; <code>Rust</code> Rust now owns that value.</p>
+<p><code>Swift</code> doesn't have a way to statically enforce ownership so it's possible to attempt to use the type
+after passing ownedship to <code>Rust</code>, which leads to undefined behavior.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        type MyOwnedType;
+
+        fn drop(ty: MyOwnedType);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-swift">let myOwnedType = MyOwnedType()
+
+drop(myOwnedType)
+
+// Undefined behavior since we no longer own this value.
+drop(myOwnedType)
+</code></pre>
+<p>We plan to add a runtime check to catch use after frees like this and immediately panic.</p>
+<p>This check will be a simple <code>if</code> statement with essentially zero runtime overhead for almost all practical
+applications, but we'll expose a feature flag to disable it for the most unusually performance sensitive use cases.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="contributing-to-swift-bridge"><a class="header" href="#contributing-to-swift-bridge">Contributing to swift-bridge</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="design-of-swift-bridge"><a class="header" href="#design-of-swift-bridge">Design of <code>swift-bridge</code></a></h1>
+<p>This chapter explores how <code>swift-bridge</code> works internally.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="code-generation"><a class="header" href="#code-generation">Code Generation</a></h1>
+<ul>
+<li>
+<p>Talk about Rust token stream generation</p>
+</li>
+<li>
+<p>Talk about Swift codegen</p>
+</li>
+<li>
+<p>Talk about C header codegen</p>
+</li>
+<li>
+<p>Talk about how we test codegen</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="adding-support-for-a-signature"><a class="header" href="#adding-support-for-a-signature">Adding support for a signature</a></h1>
+<p>Bridge modules expose Rust and Swift functions by declaring their function signatures.</p>
+<p>For example, in the following bridge module we declare one Swift and one Rust function signature.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        async fn add(a: u8, b: u16) -&gt; u32;
+    }
+
+    extern &quot;Swift&quot; {
+        type Counter;
+        fn increment(&amp;mut self);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Not all signatures are supported. For example, the following would not compile:</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// This does not compile
+
+#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        async fn print_cow(cow: Cow&lt;'static, str&gt;);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><code>swift-bridge</code> does not currently support the <code>Cow&lt;'static, str&gt;</code>, so the <code>print_cow</code> function signature is unsupported.</p>
+<p>This chapter shows how to add support for an unsupported signature.</p>
+<h2 id="implementing-support-for-a-signature"><a class="header" href="#implementing-support-for-a-signature">Implementing Support for a Signature</a></h2>
+<p>To support a new signature, we first write automated tests for the signature and then implement just enough code to get those
+tests passing.</p>
+<p>Add the time of writing, the <code>Swift</code> programming language does not have support for 128 bit integers.</p>
+<p>Let's pretend that <code>Swift</code> gained support for them and we were tasked with supporting <code>u128</code> argument and return types
+in <code>swift-bridge</code> function signatures.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        fn reflect_u128(num: u128);
+    }
+}
+
+fn reflect_u128(num: u128) -&gt; num {
+    num
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="integration-tests"><a class="header" href="#integration-tests">Integration Tests</a></h4>
+<p>Our first step would be to add an integration test where we declared this signature in
+a bridge module and called the function from Rust.</p>
+<p>We would first find a good place in <code>crates/swift-integration-tests</code> to declare the signature.</p>
+<p><a href="https://github.com/chinedufn/swift-bridge/blob/master/crates/swift-integration-tests/src/primitive.rs"><code>crates/swift-integration-tests/src/primitive.rs</code></a>
+would be a good choice.</p>
+<p>Before adding our <code>u128</code> support, the file looks like this:</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        fn test_rust_calls_swift_primitives();
+
+        fn rust_double_u8(arg: u8) -&gt; u8;
+        fn rust_double_i8(arg: i8) -&gt; i8;
+        fn rust_double_u16(arg: u16) -&gt; u16;
+        fn rust_double_i16(arg: i16) -&gt; i16;
+        fn rust_double_u32(arg: u32) -&gt; u32;
+// ... snip ...
+<span class="boring">}
+</span></code></pre></pre>
+<p>Next we would add our <code>reflect_u128</code> function to the bridge module.</p>
+<p>We would then modify the <code>SwiftRustIntegrationTestRunner</code> to call our function.</p>
+<p>In this case we would want to modify <a href="https://github.com/chinedufn/swift-bridge/blob/master/SwiftRustIntegrationTestRunner/SwiftRustIntegrationTestRunnerTests/PrimitiveTests.swift"><code>SwiftRustIntegrationTestRunner/SwiftRustIntegrationTestRunnerTests/PrimitiveTests.swift</code></a>,
+which before our updates looks something like:</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>import XCTest
+@testable import SwiftRustIntegrationTestRunner
+
+/// Tests for generic types such as `type SomeType&lt;u32&gt;`
+class PrimitiveTests: XCTestCase {
+    /// Run tests where Rust calls Swift functions that take primitive args.
+    func testRustCallsSwiftPrimitives() throws {
+        test_rust_calls_swift_primitives()
+    }
+    
+    /// Run tests where Swift calls Rust functions that take primitive args.
+    func testSwiftCallsRustPrimitives() throws {
+        XCTAssertEqual(rust_double_u8(10), 20);
+        XCTAssertEqual(rust_double_i8(10), 20);
+        XCTAssertEqual(rust_double_u16(10), 20);
+        XCTAssertEqual(rust_double_i16(10), 20);
+        XCTAssertEqual(rust_double_u32(10), 20);
+        XCTAssertEqual(rust_double_i32(10), 20);
+        XCTAssertEqual(rust_double_u64(10), 20);
+        XCTAssertEqual(rust_double_i64(10), 20);
+        XCTAssertEqual(rust_double_f32(10.0), 20.0);
+        XCTAssertEqual(rust_double_f64(10.0), 20.0);
+        XCTAssertEqual(rust_negate_bool(true), false);
+        XCTAssertEqual(rust_negate_bool(false), true);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="codegen-tests"><a class="header" href="#codegen-tests">Codegen Tests</a></h4>
+<p>After adding one or more integration tests, we would then add one or more codegen tests.</p>
+<p>In codegen tests we write out the exact code that we expect <code>swift-bridge</code> to generate.</p>
+<p>For example, here is the codegen test for supporting <code>Option&lt;u8&gt;</code> in Rust function arguments.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Copied from: crates/swift-bridge-ir/src/codegen/codegen_tests/option_codegen_tests.rs
+
+/// Test code generation for Rust function that accepts and returns an Option&lt;T&gt; where T is a
+/// primitive.
+mod extern_rust_fn_option_primitive {
+    use super::*;
+
+    fn bridge_module_tokens() -&gt; TokenStream {
+        quote! {
+            mod ffi {
+                extern &quot;Rust&quot; {
+                    fn some_function (arg: Option&lt;u8&gt;) -&gt; Option&lt;f32&gt;;
+                }
+            }
+        }
+    }
+
+    fn expected_rust_tokens() -&gt; ExpectedRustTokens {
+        ExpectedRustTokens::Contains(quote! {
+            #[export_name = &quot;__swift_bridge__$some_function&quot;]
+            pub extern &quot;C&quot; fn __swift_bridge__some_function(
+                arg: swift_bridge::option::OptionU8
+            ) -&gt; swift_bridge::option::OptionF32 {
+                if let Some(val) = super::some_function(
+                    if arg.is_some {
+                        Some(arg.val)
+                    } else {
+                        None
+                    }
+                ) {
+                    swift_bridge::option::OptionF32 { val, is_some: true}
+                } else {
+                    swift_bridge::option::OptionF32 { val: 123.4, is_some: false}
+                }
+            }
+        })
+    }
+
+    fn expected_swift_code() -&gt; ExpectedSwiftCode {
+        ExpectedSwiftCode::ContainsAfterTrim(
+            r#&quot;
+func some_function(_ arg: Optional&lt;UInt8&gt;) -&gt; Optional&lt;Float&gt; {
+    { let val = __swift_bridge__$some_function({ let val = arg; return __private__OptionU8(val: val ?? 123, is_some: val != nil); }()); if val.is_some { return val.val } else { return nil } }()
+}
+&quot;#,
+        )
+    }
+
+    const EXPECTED_C_HEADER: ExpectedCHeader = ExpectedCHeader::ExactAfterTrim(
+        r#&quot;
+struct __private__OptionF32 __swift_bridge__$some_function(struct __private__OptionU8 arg);
+    &quot;#,
+    );
+
+    #[test]
+    fn extern_rust_fn_option_primitive() {
+        CodegenTest {
+            bridge_module: bridge_module_tokens().into(),
+            expected_rust_tokens: expected_rust_tokens(),
+            expected_swift_code: expected_swift_code(),
+            expected_c_header: EXPECTED_C_HEADER,
+        }
+        .test();
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="passing-tests"><a class="header" href="#passing-tests">Passing Tests</a></h4>
+<p>After writing our integration and codegen tests we would add just enough code to make them pass.</p>
+<p>This would involve modifying <code>crates/swift-bridge-ir/src/bridged_type.rs</code> until all of our tests passed.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                        
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                            </nav>
+
+        </div>
+
+        
+        
+        
+                <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+        
+                <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+                        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+                
+    </body>
+</html>
