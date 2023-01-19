@@ -252,18 +252,25 @@ if [[ -n &quot;${DEVELOPER_SDK_DIR:-}&quot; ]]; then
   export LIBRARY_PATH=&quot;${DEVELOPER_SDK_DIR}/MacOSX.sdk/usr/lib:${LIBRARY_PATH:-}&quot;
 fi
 
+TARGETS=&quot;&quot;
+if [[ &quot;$PLATFORM_NAME&quot; = &quot;iphonesimulator&quot; ]]; then
+    TARGETS=&quot;aarch64-apple-ios-sim,x86_64-apple-ios&quot;
+else
+    TARGETS=&quot;aarch64-apple-ios,x86_64-apple-ios&quot;
+fi
+
 # if [ $ENABLE_PREVIEWS == &quot;NO&quot; ]; then
 
   if [[ $CONFIGURATION == &quot;Release&quot; ]]; then
-      echo &quot;BUIlDING FOR RELEASE&quot;
-      
-      cargo lipo --release --manifest-path ../Cargo.toml
-  else
-      echo &quot;BUIlDING FOR DEBUG&quot;
+      echo &quot;BUIlDING FOR RELEASE ($TARGETS)&quot;
 
-      cargo lipo --manifest-path ../Cargo.toml
+      cargo lipo --release --manifest-path ../Cargo.toml  --targets $TARGETS
+  else
+      echo &quot;BUIlDING FOR DEBUG ($TARGETS)&quot;
+
+      cargo lipo --manifest-path ../Cargo.toml  --targets $TARGETS
   fi
-  
+
 # else
 #   echo &quot;Skipping the script because of preview mode&quot;
 # fi
@@ -423,7 +430,7 @@ struct IosRustAnalyzerApp: App {
 
 class RustAppWrapper: ObservableObject {
     var rust: RustApp
-    
+
     init (rust: RustApp) {
         self.rust = rust
     }
@@ -437,10 +444,10 @@ import Combine
 
 struct ContentView: View {
     @EnvironmentObject var rustApp: RustAppWrapper
-    
+
     @State private var rustSource = initialSource
     @State private var rustHtml = &quot;&quot;
-    
+
     var body: some View {
         VStack {
             TextEditor(text: $rustSource)
@@ -449,21 +456,21 @@ struct ContentView: View {
                     let html = rustApp.rust.generate_html(sourceCode).toString()
                     rustHtml = html
                 })
-            
+
             WebView(text: $rustHtml)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-            
+
         }
     }
 }
 
 struct WebView: UIViewRepresentable {
     @Binding var text: String
-    
+
     func makeUIView(context: Context) -&gt; WKWebView {
         return WKWebView()
     }
-    
+
     func updateUIView(_ uiView: WKWebView, context: Context) {
         uiView.loadHTMLString(text, baseURL: nil)
     }
@@ -473,7 +480,7 @@ let initialSource = &quot;&quot;&quot;
 
 fn main () {
     let stack: Stack&lt;u8&gt; = Stack::default();
-    
+
     for val in 0..100 {
         stack.push(val);
     }
@@ -493,7 +500,7 @@ impl&lt;T&gt; Stack&lt;T&gt; {
 }
 
 &quot;&quot;&quot;
- 
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
@@ -795,7 +802,10 @@ swift-bridge-cli --help
 <h2 id="using-the-swift-package"><a class="header" href="#using-the-swift-package">Using the Swift Package</a></h2>
 <p>We now have a Swift Package (in the <code>MySwiftPackage</code> directory) which we can include in other projects using the Swift Package Manager.</p>
 <h3 id="using-the-package-in-an-xcode-project"><a class="header" href="#using-the-package-in-an-xcode-project">Using the package in an Xcode project</a></h3>
-<p>To add the package to an iOS app in XCode, go to the target's general panel, click the <code>+</code> button in the <code>Frameworks, Libraries, and Embedded Content</code> section. Then, click <code>Add Other</code> and choose <code>Add Package Dependency</code>.</p>
+<p>To add the package to an iOS app in Xcode, first open your project's <code>.xcworkspace</code> file.</p>
+<p>Next, go to the package dependencies panel, and click on <code>+</code> -&gt; <code>Add Local</code> -&gt; and select the <code>MySwiftPackage</code> directory.</p>
+<p>Next, go to the target's general panel and click the <code>+</code> button in the <code>Frameworks, Libraries, and Embedded Content</code> section.</p>
+<p>Select <code>Workspace -&gt; MySwiftPackage -&gt; MySwiftPackage</code>.</p>
 <p>Import and use it in the same way as the executable.</p>
 <h3 id="using-the-package-in-an-executable-swift-project"><a class="header" href="#using-the-package-in-an-executable-swift-project">Using the package in an executable Swift project</a></h3>
 <p>Here is an example of an executable Swift project that depends on our newly created <code>MySwiftPackage</code>.</p>
@@ -1185,9 +1195,7 @@ mod some_module {
 <pre><pre class="playground"><code class="language-rust">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>use some_other_crate::Uuid;
-
-#[swift_bridge::bridge]
+</span>#[swift_bridge::bridge]
 mod ffi {
     extern &quot;Rust&quot; {
         #[swift_bridge(rust_name = &quot;another_function&quot;)]
@@ -1196,6 +1204,27 @@ mod ffi {
 }
 
 fn another_function() {
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="swift_bridgeswift_name--functionname"><a class="header" href="#swift_bridgeswift_name--functionname">#[swift_bridge(swift_name = &quot;functionName&quot;)]</a></h4>
+<p>Sets the function name that is used on the Swift side.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        // Exports `some_function` as `someFunction`.
+        #[swift_bridge(swift_name = &quot;someFunction&quot;)]
+        fn some_function();
+    }
+
+    extern &quot;Swift&quot; {
+        // Imports `anotherFunction` as `another_function`.
+        #[swift_bridge(swift_name = &quot;anotherFunction&quot;)]
+        fn another_function();
+    }
 }
 <span class="boring">}
 </span></code></pre></pre>
@@ -1387,6 +1416,66 @@ mod ffi {
 </span></code></pre></pre>
 <p>The <code>16</code> indicates that a <code>UserId</code> has 16 bytes.</p>
 <p><code>swift-bridge</code> will add a compile time assertion that confirms that the given size is correct.</p>
+<h4 id="swift_bridgeequatable"><a class="header" href="#swift_bridgeequatable">#[swift_bridge(Equatable)]</a></h4>
+<p>The <code>Equatable</code> attribute allows you to expose a Rust <code>PartialEq</code> implementation via Swift's
+<code>Equatable</code> protocol.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        #[swift_bridge(Equatable)]
+        type RustPartialEqType;
+    }
+}
+
+#[derive(PartialEq)]
+struct RustPartialEqType(u32);
+
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-swift">// In Swift
+
+let val1 = RustPartialEqType(5)
+let val2 = RustPartialEqType(10)
+
+if val1 == val2 {
+    print(&quot;Equal&quot;)
+} else {
+    print(&quot;Not equal&quot;)
+}
+</code></pre>
+<h4 id="swift_bridgehashable"><a class="header" href="#swift_bridgehashable">#[swift_bridge(Hashable)]</a></h4>
+<p>The <code>Hashable</code> attribute allows you to expose a Rust <code>Hash</code> trait implementation via Swift's
+<code>Hashable</code> protocol.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[swift_bridge::bridge]
+mod ffi {
+    extern &quot;Rust&quot; {
+        #[swift_bridge(Hashable)]
+        type RustHashType;
+    }
+}
+
+#[derive(Hash, PartialEq)]
+struct RustHashType(u32);
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-swift">// In Swift
+
+let val = RustHashType(10);
+
+let table: [RustHashType: String] = [:]
+
+table[val] = &quot;hello&quot;
+table[val] = &quot;world&quot;
+
+//Should print &quot;world&quot;
+print(table[val])
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="transparent-types"><a class="header" href="#transparent-types">Transparent Types</a></h1>
 <p><code>swift-bridge</code> supports defining structs and enums who's fields can be
 seen by both Swift and Rust.</p>
